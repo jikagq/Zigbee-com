@@ -9,7 +9,8 @@
 #define FONCTIONS_UART_H_
 
 
-
-
+extern void InitUART(void);
+extern void TXuartdata( unsigned char c );
+extern void TXuarttrame(char *chaine);
 
 #endif /* FONCTIONS_UART_H_ */

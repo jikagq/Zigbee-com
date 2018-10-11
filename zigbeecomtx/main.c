@@ -1,4 +1,11 @@
 #include <msp430.h> 
+#include <msp430g2553.h>
+
+#include "main.h"
+#include "utils.h"
+#include "fonctions_zigbee.h"
+#include "fonctions_uart.h"
+
 
 
 /**
@@ -40,23 +47,15 @@ void iniboard(void){
 
             P1OUT &= ~(BIT0);
 
+            P1DIR |= BIT6;
+            P1OUT &= ~(BIT6);
 
             __bis_SR_register(GIE); // interrupts enabled
 }
 
-void delay (unsigned int ms)
-{
-    volatile unsigned int i, z;
-    i=100;
-    while (i--) {
-        z=ms;
-        while(z--);
-    }
-}
 
-void txzigbee(void){
 
-}
+
 
 
 int main(void)
@@ -64,6 +63,7 @@ int main(void)
     iniboard();
     //InitUART();
 
+    char chaine[] = "mystery machine";
 
     while(1){
             P1OUT &= ~(BIT0);
@@ -71,8 +71,10 @@ int main(void)
             if(mode==1){
                 P1OUT |= BIT0;
                 ///code ici
-                txzigbee();
-                delay(5000);
+                txzigbee(&chaine);
+                //tablength(&chaine);
+
+                //delay(5000);
                 mode=0;
             }else{
                 P1OUT &= ~(BIT0);
