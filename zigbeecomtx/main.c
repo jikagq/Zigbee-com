@@ -63,7 +63,7 @@ int main(void)
     iniboard();
     //InitUART();
 
-    char chaine[] = "mystery machine";
+    char chaine[] = "damn";
 
     while(1){
             P1OUT &= ~(BIT0);
@@ -72,7 +72,10 @@ int main(void)
                 P1OUT |= BIT0;
                 ///code ici
                 txzigbee(&chaine);
-                //tablength(&chaine);
+
+
+
+
 
                 //delay(5000);
                 mode=0;

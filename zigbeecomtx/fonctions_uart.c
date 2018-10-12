@@ -13,6 +13,7 @@
 #include "fonctions_zigbee.h"
 #include "fonctions_uart.h"
 
+char uarttramerx[16] = "";
 
 void InitUART(void)//initialisation de la com uart
 {
@@ -39,23 +40,18 @@ void TXuartdata( unsigned char c )//envoi d'un caractère via l'uart
 {
     while (!(IFG2&UCA0TXIFG));  // USCI_A0 TX buffer ready?
     UCA0TXBUF = c;              // TX -> RXed character
-
     P1OUT ^= BIT6;
 }
 
 void TXuarttrame(char *chaine){
-    char car = ' ';
     int cpt = 0;
-
 
     while(chaine[cpt] != '\0'){
         TXuartdata(chaine[cpt]);
         cpt++;
     }
-
-
-
-
+    TXuartdata(chaine[cpt]);
+    P1OUT &= ~(BIT6);
 }
 
 

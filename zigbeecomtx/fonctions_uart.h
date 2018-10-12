@@ -13,4 +13,6 @@ extern void InitUART(void);
 extern void TXuartdata( unsigned char c );
 extern void TXuarttrame(char *chaine);
 
+extern char uarttramerx[16];
+
 #endif /* FONCTIONS_UART_H_ */
